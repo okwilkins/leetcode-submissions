@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isPalindrome(const string &s) {
+        if (s.size() <= 0) {
+            return true;
+        }
+
+        int left{0};
+        int right{static_cast<int>(s.size()) - 1};
+
+        while (left < right) {
+            while (left < right && !std::isalnum(s[left])) {
+                ++left;
+            }
+
+            while (left < right && !std::isalnum(s[right])) {
+                --right;
+            }
+
+            if (std::tolower(s[left]) != std::tolower(s[right])) {
+                return false;
+            }
+
+            ++left;
+            --right;
+        }
+
+        return true;
+    }
+};
